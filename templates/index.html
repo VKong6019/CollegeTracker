@@ -3,64 +3,123 @@
 
 <head>
     <title>CollegeTracker</title>
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
 
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="header">
-            <nav>
-                <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="#">Home</a>
-                    </li>
-                    <li role="presentation"><a href="#">Sign In</a>
-                    </li>
-                    <li role="presentation"><a href="showSignUp">Sign Up</a>
-                    </li>
-                </ul>
-            </nav>
-            <h3 class="text-muted">List of selected compiled colleges</h3>
-        </div>
-
-        <div class="jumbotron">
-            <h1>View Your Colleges</h1>
-            <p class="lead"></p>
-            <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">View Now</a>
-            </p>
-        </div>
-
-        <div class="row marketing">
-            <div class="col-lg-6">
-                <h4>Bucket List</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                <h4>Bucket List</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-                <h4>Bucket List</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-
-            <div class="col-lg-6">
-                <h4>Bucket List</h4>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                <h4>Bucket List</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-                <h4>Bucket List</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-            </div>
-        </div>
-
-        <footer class="footer">
-            <p>&copy; made by potatoez 2019</p>
-        </footer>
-
+<div class="container">
+    <div class="header">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="#">Home</a>
+                </li>
+                <li role="presentation"><a href="#">Sign In</a>
+                </li>
+            </ul>
+        </nav>
+        <h3 class="text-muted">CollegeFinder</h3>
     </div>
+
+    <div class="jumbotron">
+        <h1>View Your Colleges</h1>
+        <p class="lead"></p>
+        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">View Now</a>
+        </p>
+    </div>
+
+    <div class="favorites">
+        <h3>Favorites List</h3>
+        <p>User's personal list of favorite colleges!</p>
+        <table style="width:100%">
+            <tr>
+                <th>Name</th>
+                <th>Rank</th>
+                <th>Review</th>
+            </tr>
+            <tr>
+                <td>Northeastern University</td>
+                <td>1</td>
+                <td>I love this school!</td>
+            </tr>
+            <tr>
+                <td>Boston University</td>
+                <td>100</td>
+                <td>Nah never going here</td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+
+    <div class="colleges">
+        <!--            <div class="col-lg-6">-->
+        <!--                <h4>Bucket List</h4>-->
+        <!--                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>-->
+
+        <!--                <h4>Bucket List</h4>-->
+        <!--                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>-->
+
+        <!--                <h4>Bucket List</h4>-->
+        <!--                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>-->
+        <!--            </div>-->
+
+        <h3>List of Colleges</h3>
+        <p>Entire college database on CollegeFinder</p>
+        <table style="width:100%">
+            <tr>
+                <th>Name</th>
+                <th>Rank</th>
+                <th>Price</th>
+                <th>Setting</th>
+                <th>Address</th>
+                <th>Location</th>
+                <th>Type</th>
+            </tr>
+            <tr>
+                <td>Northeastern University</td>
+                <td>40</td>
+                <td>53506</td>
+                <td>urban</td>
+                <td>Boston, MA</td>
+                <td>360 Huntington Ave</td>
+                <td>private</td>
+            </tr>
+            <tr>
+                <td>Stanford University</td>
+                <td>6</td>
+                <td>56691</td>
+                <td>suburban</td>
+                <td>Stanford, CA</td>
+                <td>450 Serra Mall</td>
+                <td>private</td>
+            </tr>
+            <tr>
+                <td>Columbia University</td>
+                <td>3</td>
+                <td>61850</td>
+                <td>urban</td>
+                <td>New York, New York</td>
+                <td>116 St & Broadway</td>
+                <td>private</td>
+            </tr>
+            <tr>
+                <td>Boston University</td>
+                <td>40</td>
+                <td>55892</td>
+                <td>urban</td>
+                <td>Boston, MA</td>
+                <td>25 Buick Street</td>
+                <td>private</td>
+            </tr>
+        </table>
+    </div>
+
+    <!--    <footer class="footer">-->
+    <!--        <p>&copy; made by potatoez 2019</p>-->
+    <!--    </footer>-->
+
+</div>
 </body>
 
 </html>
