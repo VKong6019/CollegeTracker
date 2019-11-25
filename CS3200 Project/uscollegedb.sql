@@ -1,7 +1,7 @@
 # creates the database schema
 DROP DATABASE IF EXISTS uscolleges;
 CREATE DATABASE uscolleges;
-
+ 
 use uscolleges;
 
 CREATE TABLE college_name (
@@ -109,7 +109,7 @@ CREATE TABLE location (
     REFERENCES setting (sid) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-# TODO:
+
 INSERT INTO location(aid, phone, sid)
 VALUES(1, "1234567890",1),
 (2,"0000000000",2),
@@ -178,10 +178,12 @@ VALUES("Christopher Eisgruber", 1, 1, 1, 1, 25000000000),
 ("Joseph Aoun", 10, 10, 10, 10, 174600000);
 
 CREATE TABLE favorites (
-	fav_id INT PRIMARY KEY AUTO_INCREMENT,
+	username VARCHAR(250),
+    cid INT NOT NULL,
     pref_rank INT NOT NULL,
-    cid INT NOT NULL UNIQUE,
     review MEDIUMTEXT NOT NULL,
+    CONSTRAINT user_id_pk
+    PRIMARY KEY (username, cid),
     CONSTRAINT fav_cid_fk
     FOREIGN KEY (cid)
     REFERENCES college (cid) ON UPDATE CASCADE ON DELETE RESTRICT
