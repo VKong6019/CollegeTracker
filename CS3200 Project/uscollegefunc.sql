@@ -103,7 +103,7 @@ END //
 DELIMITER ;
 
 # test cases
-
+	
 # retrieves the superlative given the college id
 DROP FUNCTION IF EXISTS get_rank;
 DELIMITER //
