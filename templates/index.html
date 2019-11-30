@@ -4,7 +4,7 @@
 <head>
     <title>CollegeTracker</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="static/style.css" rel="stylesheet" type="text/css">
+    <link href="{{ url_for('static',filename='static/style.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -12,41 +12,63 @@
     <div class="header">
         <nav class="fixed">
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="#">Home</a>
+                <li role="presentation" class="active"><a href="/">Home</a>
                 </li>
-                <li role="presentation"><a href="#">Sign In</a>
+                <li role="presentation"><a href="/login">Sign In</a>
                 </li>
             </ul>
         </nav>
         <h3 class="text-muted">CollegeFinder</h3>
     </div>
-
+    <hr>
     <div class="jumbotron">
-        <h1>View Your Colleges</h1>
+        <h1>View Your Colleges!</h1>
         <p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">View Now</a>
         </p>
+        <hr>
+        <h3>Add College to Favorites List</h3>
+        <div class="container">
+            <form method="POST" action="{{ url_for('main') }}">
+                <div class="div col-md-6">
+                    {{ form.csrf_token }}
+                    {{ form.college_id.label }}
+                    <p>{{ form.college_id }}</p>
+                    {{ form.rank.label }}
+                    <p>{{ form.rank }}</p>
+                </div>
+                <div class="div col-md-6">
+                    {{ form.review.label }}
+                    <p>{{ form.review }}</p>
+                    {{ form.submit }}
+                </div>
+            </form>
+        </div>
     </div>
 
     <div class="favorites">
         <h3>Favorites List</h3>
         <p>User's personal list of favorite colleges!</p>
         <table style="width:100%">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th>Rank</th>
                 <th>Review</th>
             </tr>
+            </thead>
+            <tbody>
+            {% block user_favs %}
+            {% for item_id, item in favs.items() %}
             <tr>
-                <td>Northeastern University</td>
-                <td>1</td>
-                <td>I love this school!</td>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td><a class="btn btn-secondary" id="edit">Edit</a></td>
+                <td><a class="btn btn-danger" id="delete">Delete</a></td>
             </tr>
-            <tr>
-                <td>Boston University</td>
-                <td>100</td>
-                <td>Nah never going here</td>
-            </tr>
+            </tbody>
+            {% endfor %}
+            {% endblock user_favs %}
         </table>
     </div>
 
@@ -64,7 +86,7 @@
                 <th>Price</th>
                 <th>Location</th>
                 <th>President</th>
-                <th>College Id</th>
+                <th>Id</th>
             </tr>
             </thead>
             <tbody>
