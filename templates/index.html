@@ -4,13 +4,13 @@
 <head>
     <title>CollegeTracker</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="static/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
 <div class="container">
     <div class="header">
-        <nav>
+        <nav class="fixed">
             <ul class="nav nav-pills pull-right">
                 <li role="presentation" class="active"><a href="#">Home</a>
                 </li>
@@ -53,50 +53,46 @@
     <hr>
 
     <div class="colleges">
-        <!--            <div class="col-lg-6">-->
-        <!--                <h4>Bucket List</h4>-->
-        <!--                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>-->
-
-        <!--                <h4>Bucket List</h4>-->
-        <!--                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>-->
-
-        <!--                <h4>Bucket List</h4>-->
-        <!--                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>-->
-        <!--            </div>-->
-
-
         <h3>List of Colleges</h3>
         <p>Entire college database on CollegeFinder</p>
-        <table id="colleges_table" style="width:100%">
+        <table style="width:100%">
+            <thead>
             <tr>
                 <th>Name</th>
-                <th>President</th>
                 <th>Rank</th>
+                <th>Type</th>
                 <th>Price</th>
                 <th>Location</th>
-                <th>Type</th>
+                <th>President</th>
+                <th>College Id</th>
             </tr>
-
+            </thead>
+            <tbody>
             {% block content %}
             {% for college_id, college in colleges.items() %}
             <tr>
                 <td>{{ college[1] }}</td>
-                <td>{{ college[2] }}</td>
                 <td>{{ college[3] }}</td>
+                <td>{{ college[6] }}</td>
                 <td>{{ college[4] }}</td>
                 <td>{{ college[5] }}</td>
-                <td>{{ college[6] }}</td>
+                <td>{{ college[2] }}</td>
+                <td>{{ college[0] }}</td>
             </tr>
+            </tbody>
             {% endfor %}
             {% endblock content %}
         </table>
     </div>
-    
-    <footer class="page-footer">
-        <p>&copy; made by potatoez 2019</p>
+    <footer class="footer">
+        <div class="jumbotron text-center text-md-left">
+            <p>made by potatoez 2019</p>
+            <h5>Vera Kong and Nicole Danuwidjaja</h5>
+            <a href="https://github.com/VKong6019/CollegeTracker">GitHub</a>
+        </div>
     </footer>
-
 </div>
+
 </body>
 
 </html>

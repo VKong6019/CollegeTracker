@@ -1,5 +1,5 @@
 import mysql.connector
-
+import secretsecret
 # pip install mysql-connector-python
 db_dict = {}
 
@@ -26,9 +26,12 @@ def get_colleges():
     coll_dict = {}
     # connects to the mysql database
     # note that the login_db function needs to be called first for this to successfully connect
-    db = mysql.connector.connect(host='localhost', database='uscolleges',
-                                 user=next(iter(db_dict)),
-                                 passwd=db_dict[next(iter(db_dict))])
+    # db = mysql.connector.connect(host='localhost', database='uscolleges',
+    #                              user=next(iter(db_dict)),
+    #                              passwd=db_dict[next(iter(db_dict))])
+
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
     coll_cursor = db.cursor()
     coll_cursor.callproc("track_colleges")
     # extracts tuples and puts them into the dictionary
@@ -47,11 +50,15 @@ def get_colleges():
 def get_favs():
     coll_dict = {}
     # login_db must also be called first before this read operation can be done
-    db = mysql.connector.connect(host='localhost', database='uscolleges',
-                                 user=next(iter(db_dict)),
-                                 passwd=db_dict[next(iter(db_dict))])
+    # db = mysql.connector.connect(host='localhost', database='uscolleges',
+    #                              user=next(iter(db_dict)),
+    #                              passwd=db_dict[next(iter(db_dict))])
+
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
     coll_cursor = db.cursor()
-    coll_cursor.callproc("track_user_favorites", [next(iter(db_dict))])
+    # coll_cursor.callproc("track_user_favorites", [next(iter(db_dict))])
+    coll_cursor.callproc("track_user_favorites", [secretsecret.spooky_username])
     for result in coll_cursor.stored_results():
         for row in result.fetchall():
             coll_dict[row[0]] = row

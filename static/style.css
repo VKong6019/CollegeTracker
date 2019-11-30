@@ -1,0 +1,8 @@
+table tbody, thead {
+    display: block;
+}
+
+table tbody {
+    overflow: auto;
+    height: 500vh;
+}
