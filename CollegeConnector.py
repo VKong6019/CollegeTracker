@@ -69,11 +69,18 @@ def get_favs():
 
 # creates a new entry into the user's favorite list given a college id, user ranking, and review
 def create_fav(cid, rank, text):
-    db = mysql.connector.connect(host='localhost', database='uscolleges',
-                                 user=next(iter(db_dict)),
-                                 passwd=db_dict[next(iter(db_dict))])
+    # db = mysql.connector.connect(host='localhost', database='uscolleges',
+    #                              user=next(iter(db_dict)),
+    #                              passwd=db_dict[next(iter(db_dict))])
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
+
     coll_cursor = db.cursor()
-    coll_cursor.callproc("create_fav", [cid, next(iter(db_dict)), rank, text])
+    # coll_cursor.callproc("create_fav", [cid, next(iter(db_dict)), rank, text])
+    print(cid)
+    print(rank)
+    print(text)
+    coll_cursor.callproc("create_fav", [cid, secretsecret.spooky_username, rank, text])
     message = None
     for result in coll_cursor.stored_results():
         for row in result.fetchall():

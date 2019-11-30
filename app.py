@@ -3,8 +3,8 @@
 
 from flask import Flask, render_template, flash, url_for
 from werkzeug.utils import redirect
-
-from CollegeConnector import get_colleges, get_favs
+from flask_bootstrap import Bootstrap
+from CollegeConnector import get_colleges, get_favs, create_fav
 from user_input import AddFavorites, SignUpForm
 import pymysql
 import secretsecret
@@ -15,6 +15,9 @@ import secretsecret
 # Connect to Flask server
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = secretsecret.secret_key
+
+bootstrap = Bootstrap(app)
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
@@ -37,9 +40,10 @@ def main():
 
     # checks if form is validated and submitted properly
     if fav_form.validate_on_submit():
-        # show message
-        flash('Favorite added!', 'success')
-        return redirect(url_for('/'))
+        # calls on python function to create favorite based on user input
+        create_fav(fav_form.college_id.data, fav_form.rank.data, fav_form.review.data)
+        flash("Favorite added!")
+        return redirect(url_for('main'))
 
     # obtain lists of current favorites and colleges from database
     favorites_list = get_favs()
@@ -47,6 +51,17 @@ def main():
 
     # render front end
     return render_template("index.html", colleges=college_names, favs=favorites_list, form=fav_form, content_type='application/json')
+
+# signin page
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    login = SignUpForm()
+
+    if login.validate_on_submit():
+        flash("Login successful!")
+        return redirect(url_for('main'))
+
+    return render_template('login.html', title="Sign In", form=login)
 
 
 if __name__ == "__main__":

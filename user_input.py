@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, IntegerField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, TextAreaField
+from wtforms.validators import DataRequired, Length, EqualTo
 
 class SignUpForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
@@ -12,5 +12,5 @@ class SignUpForm(FlaskForm):
 class AddFavorites(FlaskForm):
     college_id = IntegerField('College Id', validators=[DataRequired()])
     rank = IntegerField('Rank', validators=[DataRequired()])
-    review = StringField('Review', validators=[DataRequired()])
+    review = TextAreaField('Review', validators=[DataRequired(), Length(max=250)])
     submit = SubmitField('Add')
