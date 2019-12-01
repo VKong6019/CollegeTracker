@@ -29,14 +29,15 @@ DROP PROCEDURE IF EXISTS update_review_fav;
 # given favorite id, return all fields of favorite
 DELIMITER //
 CREATE PROCEDURE get_favorite(
-	favorite_id INT
+    IN uname VARCHAR(250),
+	IN favorite_id INT
 )
 BEGIN
-	SELECT cid, pref_rank, review FROM favorites WHERE favorite_id = cid;
+	SELECT cid, pref_rank, review
+	FROM favorites
+	WHERE favorite_id = cid AND uname = username;
 END //
 DELIMITER ;
-
-CALL get_favorite(1);
 
 # given a college id, return respective college name if it exists
 DELIMITER //
