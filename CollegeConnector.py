@@ -1,5 +1,6 @@
 import mysql.connector
 import secretsecret
+
 # pip install mysql-connector-python
 db_dict = {}
 
@@ -64,6 +65,23 @@ def get_favs():
             coll_dict[row[0]] = row
     coll_cursor.close()
     db.close()
+
+    return coll_dict
+
+
+# obtains the college id, user ranking, and review of given favorite id
+def get_fav(fid):
+    coll_dict = {}
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
+    coll_cursor = db.cursor()
+    coll_cursor.callproc("get_favorite", [secretsecret.spooky_username, fid])
+    for result in coll_cursor.stored_results():
+        for row in result.fetchall():
+            coll_dict[row[0]] = row
+    coll_cursor.close()
+    db.close()
+
     return coll_dict
 
 
@@ -93,20 +111,26 @@ def create_fav(cid, rank, text):
 
 # deletes an entry from the user's favorite list given a college id
 def delete_fav(cid):
-    db = mysql.connector.connect(host='localhost', database='uscolleges',
-                                 user=next(iter(db_dict)),
-                                 passwd=db_dict[next(iter(db_dict))])
+    # db = mysql.connector.connect(host='localhost', database='uscolleges',
+    #                              user=next(iter(db_dict)),
+    #                              passwd=db_dict[next(iter(db_dict))])
+
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
     coll_cursor = db.cursor()
-    coll_cursor.callproc("delete_fav", [next(iter(db_dict)), cid])
+    # coll_cursor.callproc("delete_fav", [next(iter(db_dict)), cid])
+    coll_cursor.callproc("delete_fav", [secretsecret.spooky_username, cid])
     db.commit()
     coll_cursor.close()
     db.close()
 
 
 def update_college(old_id, new_id):
-    db = mysql.connector.connect(host='localhost', database='uscolleges',
-                                 user=next(iter(db_dict)),
-                                 passwd=db_dict[next(iter(db_dict))])
+    # db = mysql.connector.connect(host='localhost', database='uscolleges',
+    #                              user=next(iter(db_dict)),
+    #                              passwd=db_dict[next(iter(db_dict))])
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
     coll_cursor = db.cursor()
     coll_cursor.callproc("update_coll_fav", [next(iter(db_dict)), old_id, new_id])
     db.commit()
@@ -115,9 +139,11 @@ def update_college(old_id, new_id):
 
 
 def update_rank(cid, new_rank):
-    db = mysql.connector.connect(host='localhost', database='uscolleges',
-                                 user=next(iter(db_dict)),
-                                 passwd=db_dict[next(iter(db_dict))])
+    # db = mysql.connector.connect(host='localhost', database='uscolleges',
+    #                              user=next(iter(db_dict)),
+    #                              passwd=db_dict[next(iter(db_dict))])
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
     coll_cursor = db.cursor()
     coll_cursor.callproc("update_rank_fav", [next(iter(db_dict)), cid, new_rank])
     db.commit()
@@ -126,9 +152,11 @@ def update_rank(cid, new_rank):
 
 
 def update_review(cid, new_text):
-    db = mysql.connector.connect(host='localhost', database='uscolleges',
-                                 user=next(iter(db_dict)),
-                                 passwd=db_dict[next(iter(db_dict))])
+    # db = mysql.connector.connect(host='localhost', database='uscolleges',
+    #                              user=next(iter(db_dict)),
+    #                              passwd=db_dict[next(iter(db_dict))])
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
     coll_cursor = db.cursor()
     coll_cursor.callproc("update_review_fav", [next(iter(db_dict)), cid, new_text])
     db.commit()
