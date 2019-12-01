@@ -1,4 +1,5 @@
 use uscolleges;
+DROP PROCEDURE IF EXISTS get_favorite;
 DROP FUNCTION IF EXISTS get_college_name;
 DROP FUNCTION IF EXISTS get_college_id;
 DROP PROCEDURE IF EXISTS track_superlative;
@@ -24,6 +25,18 @@ DROP PROCEDURE IF EXISTS update_review_fav;
 
 # operations to read the data in uscollege database
 # read operations below so far retrieve college name, superlative set, and profile set (which has some references to other tables in the db)
+
+# given favorite id, return all fields of favorite
+DELIMITER //
+CREATE PROCEDURE get_favorite(
+	favorite_id INT
+)
+BEGIN
+	SELECT cid, pref_rank, review FROM favorites WHERE favorite_id = cid;
+END //
+DELIMITER ;
+
+CALL get_favorite(1);
 
 # given a college id, return respective college name if it exists
 DELIMITER //
