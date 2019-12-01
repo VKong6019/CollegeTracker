@@ -28,20 +28,37 @@
         <hr>
         <h3>Add College to Favorites List</h3>
         <div class="container">
-            <form method="POST" action="{{ url_for('main') }}">
-                <div class="div col-md-6">
-                    {{ form.csrf_token }}
-                    {{ form.college_id.label }}
-                    <p>{{ form.college_id }}</p>
-                    {{ form.rank.label }}
-                    <p>{{ form.rank }}</p>
-                </div>
-                <div class="div col-md-6">
-                    {{ form.review.label }}
-                    <p>{{ form.review }}</p>
-                    {{ form.submit }}
-                </div>
-            </form>
+            <div class="div col-md-12">
+                <form method="POST" action="{{ url_for('main') }}">
+                    <div class="div col-md-6">
+                        {{ form.csrf_token }}
+                        {{ form.college_id.label }}
+                        <p>{{ form.college_id }}</p>
+                        {{ form.rank.label }}
+                        <p>{{ form.rank }}</p>
+                    </div>
+                    <div class="div col-md-6">
+                        {{ form.review.label }}
+                        <p>{{ form.review }}</p>
+                        {{ form.submit }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="btn-large container" style="min-height:100% width:80%">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <hr>
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                <p>{{ message }}</p>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block body %}{% endblock %}
         </div>
     </div>
 
@@ -113,6 +130,7 @@
             {% endblock content %}
         </table>
     </div>
+    <hr>
     <footer class="footer">
         <div class="jumbotron text-center text-md-left">
             <p>made by potatoez 2019</p>

@@ -4,7 +4,7 @@
 from flask import Flask, render_template, flash, url_for
 from werkzeug.utils import redirect
 from flask_bootstrap import Bootstrap
-from CollegeConnector import get_colleges, get_favs, create_fav, delete_fav
+from CollegeConnector import get_colleges, get_favs, create_fav, delete_fav, get_fav
 from user_input import AddFavorites, SignUpForm
 import pymysql
 import secretsecret
@@ -18,6 +18,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = secretsecret.secret_key
 
 bootstrap = Bootstrap(app)
+
 
 @app.route("/", methods=['GET', 'POST'])
 def main():
@@ -38,6 +39,8 @@ def main():
     # create a form object for adding favorites
     fav_form = AddFavorites()
 
+    # TODO: Add rejection cases for when favorite is already added
+    # TODO: Handle errors (integrity errors should be caught)
     # checks if form is validated and submitted properly
     if fav_form.validate_on_submit():
         # calls on python function to create favorite based on user input
@@ -50,7 +53,9 @@ def main():
     college_names = get_colleges()
 
     # render front end
-    return render_template("index.html", colleges=college_names, favs=favorites_list, form=fav_form, content_type='application/json')
+    return render_template("index.html", colleges=college_names, favs=favorites_list, form=fav_form,
+                           content_type='application/json')
+
 
 # signin page
 @app.route("/login", methods=['GET', 'POST'])
@@ -63,30 +68,38 @@ def login():
 
     return render_template('login.html', title="Sign In", form=login)
 
+
 # edit favorite item
 @app.route("/edit/<string:id>", methods=['GET', 'POST'])
-def edit():
+def edit(id):
     edit = AddFavorites()
 
     # obtain college object in database from given id
-    college = id
+    college = get_fav(id)
+    print(college)
 
-    # read the favorite
-    edit.college_id.data = college['college_id']
-    edit.review.data = college['review']
-    edit.rank.data = college['data']
+    # for item_id, item in college.items():
+    #     print(item[0])
+    #     print(item[1])
+    #     print(item[2])
+    #     # read the favorite
+    #     edit.college_id.data = item[0]
+    #     edit.review.data = item[1]
+    # edit.rank.data = item[2]
 
-    if edit.validate_on_submit():
-        flash("Edit successful!")
-        return redirect(url_for('main'))
+    # if edit.validate_on_submit():
+    #     flash("Edit successful!")
+    #     return redirect(url_for('main'))
 
-    return render_template('index.html', form=edit)
+    return render_template('edit.html', form=edit)
 
 
 # delete favorite item
 @app.route("/delete/<string:id>", methods=['GET', 'POST'])
 def delete(id):
-    delete_fav(secretsecret.spooky_username, id)
+    delete_fav(id)
+    flash("Delete successful!")
+    return redirect(url_for('main'))
 
 
 if __name__ == "__main__":

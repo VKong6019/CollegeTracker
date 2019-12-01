@@ -1,5 +1,13 @@
+.flash {
+    position: relative;
+}
+
 body {
   padding-top: 50px;
+}
+
+table th, td {
+    padding: 10px;
 }
 
 table tbody, thead {
