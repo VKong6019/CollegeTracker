@@ -108,7 +108,7 @@ def update_college(old_id, new_id):
                                  user=next(iter(db_dict)),
                                  passwd=db_dict[next(iter(db_dict))])
     coll_cursor = db.cursor()
-    coll_cursor.callproc("update_rank_fav", [next(iter(db_dict)), old_id, new_id])
+    coll_cursor.callproc("update_coll_fav", [next(iter(db_dict)), old_id, new_id])
     db.commit()
     coll_cursor.close()
     db.close()

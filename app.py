@@ -4,7 +4,7 @@
 from flask import Flask, render_template, flash, url_for
 from werkzeug.utils import redirect
 from flask_bootstrap import Bootstrap
-from CollegeConnector import get_colleges, get_favs, create_fav
+from CollegeConnector import get_colleges, get_favs, create_fav, delete_fav
 from user_input import AddFavorites, SignUpForm
 import pymysql
 import secretsecret
@@ -62,6 +62,31 @@ def login():
         return redirect(url_for('main'))
 
     return render_template('login.html', title="Sign In", form=login)
+
+# edit favorite item
+@app.route("/edit/<string:id>", methods=['GET', 'POST'])
+def edit():
+    edit = AddFavorites()
+
+    # obtain college object in database from given id
+    college = id
+
+    # read the favorite
+    edit.college_id.data = college['college_id']
+    edit.review.data = college['review']
+    edit.rank.data = college['data']
+
+    if edit.validate_on_submit():
+        flash("Edit successful!")
+        return redirect(url_for('main'))
+
+    return render_template('index.html', form=edit)
+
+
+# delete favorite item
+@app.route("/delete/<string:id>", methods=['GET', 'POST'])
+def delete(id):
+    delete_fav(secretsecret.spooky_username, id)
 
 
 if __name__ == "__main__":
