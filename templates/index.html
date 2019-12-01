@@ -63,8 +63,13 @@
                 <td>{{ item[0] }}</td>
                 <td>{{ item[1] }}</td>
                 <td>{{ item[2] }}</td>
-                <td><a class="btn btn-secondary" id="edit">Edit</a></td>
-                <td><a class="btn btn-danger" id="delete">Delete</a></td>
+                <td><a class="btn btn-secondary" href="edit/{{item_id}}" id="edit">Edit</a></td>
+                <td>
+                    <form action="{{url_for('delete', id=item.id)}}" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="submit" value="Delete" class="btn btn-danger">
+                    </form>
+                </td>
             </tr>
             </tbody>
             {% endfor %}

@@ -12,9 +12,9 @@
     <div class="header">
         <nav class="fixed">
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="{{ url_for('main') }}">Home</a>
+                <li role="presentation"><a href="{{ url_for('main') }}">Home</a>
                 </li>
-                <li role="presentation"><a href="/login">Sign In</a>
+                <li role="presentation" class="active"><a href="/login">Sign In</a>
                 </li>
             </ul>
         </nav>
@@ -25,15 +25,6 @@
     <div class="container">
         {% extends "bootstrap/base.html" %}
         {% import "bootstrap/wtf.html" as wtf %}
-
-        {% block title %}
-        Sign In to CollegeTracker
-        {% endblock %}
-
-        {% block styles %}
-        {{super()}}
-        <link rel="stylesheet" href="{{url_for('.static', filename='signin.css')}}">
-        {% endblock %}
 
         {% block content %}
 
