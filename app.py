@@ -72,7 +72,7 @@ def login():
 # edit favorite item
 @app.route("/edit/<string:id>", methods=['GET', 'POST'])
 def edit(id):
-    edit = AddFavorites()
+    edit_form = AddFavorites()
 
     # obtain college object in database from given id
     college = get_fav(id)
@@ -91,7 +91,8 @@ def edit(id):
     #     flash("Edit successful!")
     #     return redirect(url_for('main'))
 
-    return render_template('edit.html', form=edit)
+    print("Testing")
+    return render_template('edit.html', form=edit_form)
 
 
 # delete favorite item

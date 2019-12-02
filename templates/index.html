@@ -26,20 +26,18 @@
         <p class="lead"></p>
         </p>
         <hr>
-        <h3>Add College to Favorites List</h3>
         <div class="container">
+            <h3>Add College to Favorites List</h3>
             <div class="div col-md-12">
+                {% from "form_inputs.html" import render_field %}
                 <form method="POST" action="{{ url_for('main') }}">
                     <div class="div col-md-6">
                         {{ form.csrf_token }}
-                        {{ form.college_id.label }}
-                        <p>{{ form.college_id }}</p>
-                        {{ form.rank.label }}
-                        <p>{{ form.rank }}</p>
+                        {{ render_field(form.college_id, class_="form-control") }}
+                        {{ render_field(form.rank, class_="form-control") }}
                     </div>
                     <div class="div col-md-6">
-                        {{ form.review.label }}
-                        <p>{{ form.review }}</p>
+                        <p>{{ render_field(form.review, class_="form-control") }}</p>
                         {{ form.submit }}
                     </div>
                 </form>

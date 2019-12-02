@@ -95,9 +95,6 @@ def create_fav(cid, rank, text):
 
     coll_cursor = db.cursor()
     # coll_cursor.callproc("create_fav", [cid, next(iter(db_dict)), rank, text])
-    print(cid)
-    print(rank)
-    print(text)
     coll_cursor.callproc("create_fav", [cid, secretsecret.spooky_username, rank, text])
     message = None
     for result in coll_cursor.stored_results():
