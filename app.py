@@ -44,8 +44,8 @@ def main():
     # checks if form is validated and submitted properly
     if fav_form.validate_on_submit():
         # calls on python function to create favorite based on user input
-        create_fav(fav_form.college_id.data, fav_form.rank.data, fav_form.review.data)
-        flash("Favorite added!")
+        message = create_fav(fav_form.college_id.data, fav_form.rank.data, fav_form.review.data)
+        flash(message)
         return redirect(url_for('main'))
 
     # obtain lists of current favorites and colleges from database
