@@ -58,10 +58,6 @@ BEGIN
 END //
 DELIMITER ;
 
-# test cases
-SELECT get_college_name(10);
-SELECT get_college_name(-1);
-
 # given a college name, return respective college id if it exists
 DELIMITER //
 CREATE FUNCTION get_college_id(
@@ -81,8 +77,6 @@ BEGIN
 END //
 DELIMITER ;
 
-SELECT get_college_id('Northeastern University');
-
 # given a college id, return a result set containing college name, rank, and superlative title
 DELIMITER //
 CREATE PROCEDURE track_superlative(
@@ -94,10 +88,6 @@ BEGIN
     WHERE college_id = cid;
 END //
 DELIMITER ;
-
-# test cases
-CALL track_superlative(10);
-CALL track_superlative(-1);
 
 # given a college id, return a result set containing references
 DELIMITER //
@@ -111,11 +101,6 @@ BEGIN
 END //
 DELIMITER ;
 
-# test cases
-# TODO: Consider whether to create an error msg or just leave it as an empty relation
-CALL track_college_profile(10);
-CALL track_college_profile(-1);
-
 # given a user's name, returns all entries in the user's favorited list
 DELIMITER //
 CREATE PROCEDURE track_user_favorites(
@@ -128,8 +113,6 @@ BEGIN
 END //
 DELIMITER ;
 
-# test cases
-	
 # retrieves the superlative given the college id
 DELIMITER //
 CREATE FUNCTION get_rank(
@@ -148,8 +131,6 @@ BEGIN
     RETURN msg;
 END //
 DELIMITER ;
-
-SELECT get_rank(10);
 
 # retrieves the room and board pricing given a college
 DELIMITER //
@@ -170,8 +151,6 @@ BEGIN
 END //
 DELIMITER ;
 
-SELECT get_tuition(10);
-
 # retrieves description of the college location
 DELIMITER //
 CREATE FUNCTION get_desc(
@@ -190,8 +169,6 @@ BEGIN
     RETURN msg;
 END //
 DELIMITER ;
-
-SELECT get_desc(10);
 
 # retrieves address of college as a text
 DELIMITER //
@@ -212,8 +189,6 @@ BEGIN
 END //
 DELIMITER ;
 
-SELECT get_address(10);
-
 # retrieves the complete location profile of a college
 DELIMITER //
 CREATE FUNCTION get_location(
@@ -232,8 +207,6 @@ BEGIN
     RETURN loc_msg;
 END //
 DELIMITER ;
-
-SELECT get_location(10);
 
 # concatenates college type into a brief sentence
 DELIMITER //
@@ -254,8 +227,6 @@ BEGIN
 END //
 DELMIITER ;
 
-SELECT get_type(10);
-
 # returns a set of all college profiles without references
 DELIMITER //
 CREATE PROCEDURE track_colleges()
@@ -265,8 +236,6 @@ BEGIN
     FROM college;
 END //
 DELIMITER ;
-
-CALL track_colleges();
 
 # operations below create entries in the user table associated with the user's profile
 
@@ -298,8 +267,6 @@ BEGIN
 END //
 DELIMITER ;
 
-CALL create_fav(11, 'root', 7, "yeehaw fail pls");
-
 # operations below delete entries in the favorites table
 
 # given a username and college id, delete this entry from favorites table
@@ -313,8 +280,6 @@ BEGIN
     WHERE username = uname AND cid = college_id;
 END //
 DELIMITER ;
-
-# test cases
 
 # operations below update fields of a entry in the favorites table
 
