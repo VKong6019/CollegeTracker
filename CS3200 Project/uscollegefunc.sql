@@ -286,6 +286,11 @@ BEGIN
 		SELECT CONCAT('This already exists in your list') as message;
     END;
     
+    DECLARE EXIT HANDLER FOR 1452
+    BEGIN
+		SELECT CONCAT('Invalid College') as message;
+	END;
+    
 	INSERT INTO favorites(username, cid, pref_rank, review)
     VALUES (uname, college_id, college_rank, review_text);
     
@@ -293,6 +298,7 @@ BEGIN
 END //
 DELIMITER ;
 
+CALL create_fav(11, 'root', 7, "yeehaw fail pls");
 
 # operations below delete entries in the favorites table
 
