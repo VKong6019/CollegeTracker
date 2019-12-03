@@ -4,7 +4,7 @@
 <head>
     <title>CollegeTracker</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="{{ url_for('static',filename='static/style.css') }}" rel="stylesheet" type="text/css">
+    <!--    <link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet" type="text/css">-->
 </head>
 
 <body>
@@ -29,9 +29,9 @@
             <div class="form-group">
                 {{ render_field(form.college_id, class_="form-control") }}
                 {{ render_field(form.rank, class_="form-control") }}
-                {{ render_field(form.review, class_="form-control", id="editor") }}
+                {{ render_field(form.review, class_="form-control") }}
             </div>
-            <p><input class="btn btn-primary" type="submit" value="Submit">
+            {{ form.submit }}
         </form>
         {% endblock %}
     </div>

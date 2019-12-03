@@ -4,7 +4,7 @@
 from flask import Flask, render_template, flash, url_for
 from werkzeug.utils import redirect
 from flask_bootstrap import Bootstrap
-from CollegeConnector import get_colleges, get_favs, create_fav, delete_fav, get_fav
+from CollegeConnector import get_colleges, get_favs, create_fav, delete_fav, get_fav, update_rank, update_review
 from user_input import AddFavorites, SignUpForm
 import pymysql
 import secretsecret
@@ -76,20 +76,20 @@ def edit(id):
 
     # obtain college object in database from given id
     college = get_fav(id)
-    print(college)
 
-    # for item_id, item in college.items():
-    #     print(item[0])
-    #     print(item[1])
-    #     print(item[2])
-    #     # read the favorite
-    #     edit.college_id.data = item[0]
-    #     edit.review.data = item[1]
-    # edit.rank.data = item[2]
+    for item_id, item in college.items():
+        # store the existing favorite's information and prepopulate form
+        edit_form.college_id.data = item[0]
+        edit_form.review.data = item[2]
+        edit_form.rank.data = item[1]
 
-    # if edit.validate_on_submit():
-    #     flash("Edit successful!")
-    #     return redirect(url_for('main'))
+    if edit_form.validate_on_submit():
+        # update fields
+        update_rank(edit_form.college_id.data, edit_form.rank.data)
+        update_review(edit_form.college_id.data, edit_form.review.data)
+        flash("Edit successful!")
+
+        return redirect(url_for('main'))
 
     print("Testing")
     return render_template('edit.html', form=edit_form)
