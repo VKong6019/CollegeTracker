@@ -22,15 +22,13 @@ def login_db(username, password):
 def get_college_name(fav_id):
     college_name = ""
     db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
-                                 password=secretsecret.spooky_password)
+                                 passwd=secretsecret.spooky_password)
     coll_cursor = db.cursor()
-    coll_cursor.callproc("get_college_name", [fav_id])
+    coll_cursor.callproc("track_name", [fav_id])
     for result in coll_cursor.stored_results():
-        for row in result.fetchall():
-            college_name = row[0]
+        college_name = result.fetchone()[0]
     coll_cursor.close()
     db.close()
-
     return college_name
 
 
@@ -114,8 +112,7 @@ def create_fav(cid, rank, text):
     coll_cursor.callproc("create_fav", [cid, secretsecret.spooky_username, rank, text])
     message = None
     for result in coll_cursor.stored_results():
-        for row in result.fetchall():
-            message = row
+        message = result.fetchone()
     db.commit()
     coll_cursor.close()
     db.close()
@@ -133,19 +130,6 @@ def delete_fav(cid):
     coll_cursor = db.cursor()
     # coll_cursor.callproc("delete_fav", [next(iter(db_dict)), cid])
     coll_cursor.callproc("delete_fav", [secretsecret.spooky_username, cid])
-    db.commit()
-    coll_cursor.close()
-    db.close()
-
-
-def update_college(old_id, new_id):
-    # db = mysql.connector.connect(host='localhost', database='uscolleges',
-    #                              user=next(iter(db_dict)),
-    #                              passwd=db_dict[next(iter(db_dict))])
-    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
-                                 password=secretsecret.spooky_password)
-    coll_cursor = db.cursor()
-    coll_cursor.callproc("update_coll_fav", [next(iter(db_dict)), old_id, new_id])
     db.commit()
     coll_cursor.close()
     db.close()
