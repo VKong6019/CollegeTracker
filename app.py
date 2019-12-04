@@ -19,7 +19,6 @@ app.config['SECRET_KEY'] = secretsecret.secret_key
 
 bootstrap = Bootstrap(app)
 
-
 @app.route("/", methods=['GET', 'POST'])
 def main():
     # call a mysql function get_college_name(id)
@@ -39,8 +38,6 @@ def main():
     # create a form object for adding favorites
     fav_form = AddFavorites()
 
-    # TODO: Add rejection cases for when favorite is already added
-    # TODO: Handle errors (integrity errors should be caught)
     # checks if form is validated and submitted properly
     if fav_form.validate_on_submit():
         # calls on python function to create favorite based on user input

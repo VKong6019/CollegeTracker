@@ -4,7 +4,7 @@
 <head>
     <title>CollegeTracker</title>
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
-<!--    <link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet" type="text/css">-->
+    <link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -62,13 +62,15 @@
     <div class="favorites">
         <h3>Favorites List</h3>
         <p>User's personal list of favorite colleges!</p>
-        <table style="width:100%">
+        <table class="college_db" style="width:100%">
             <thead>
             <tr>
                 <th>Name</th>
                 <th>User Rank</th>
                 <th>Review</th>
                 <th>Id</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -98,7 +100,7 @@
     <div class="colleges">
         <h3>List of Colleges</h3>
         <p>Entire college database on CollegeFinder</p>
-        <table style="width:100%">
+        <table class="college_db" style="width:100%">
             <thead>
             <tr>
                 <th>Name</th>
