@@ -69,7 +69,7 @@ def login():
 # edit favorite item
 @app.route("/edit/<string:id>", methods=['GET', 'POST'])
 def edit(id):
-    edit_form = AddFavorites()
+    edit_form = AddFavorites(request.form)
 
     # obtain college object in database from given id
     college = get_fav(id)
@@ -78,17 +78,13 @@ def edit(id):
         # store the existing favorite's information and prepopulate form
         edit_form.college_id.data = get_college_name(id)
         edit_form.review.data = item[2]
-        print(edit_form.review.data)
         edit_form.rank.data = item[1]
-        print(edit_form.rank.data)
 
+    # grab new fields and update database
     if edit_form.validate_on_submit():
-        update_rank(id, edit_form.rank.data)
-        update_review(id, edit_form.review.data)
+        update_rank(id, request.form['rank'])
+        update_review(id, request.form['review'])
 
-        # get new college object
-        college = get_fav(id)
-        print(college)
         flash("Edit successful!")
 
         return redirect(url_for('main'))
