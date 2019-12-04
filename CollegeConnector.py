@@ -18,6 +18,22 @@ def login_db(username, password):
         return "Unsuccessful Login."
 
 
+# gets the name of a single college name given id
+def get_college_name(fav_id):
+    college_name = ""
+    db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
+                                 password=secretsecret.spooky_password)
+    coll_cursor = db.cursor()
+    coll_cursor.callproc("get_college_name", [fav_id])
+    for result in coll_cursor.stored_results():
+        for row in result.fetchall():
+            college_name = row[0]
+    coll_cursor.close()
+    db.close()
+
+    return college_name
+
+
 # retrieves all the current colleges to view in the database
 # every value in a tuple or a college's result set is formatted as cid, cname, pres_name, rank (string),
 # tuition (string), location (string), type (string), and endowment

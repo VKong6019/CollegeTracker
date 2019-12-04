@@ -12,9 +12,11 @@
     <div class="header">
         <nav class="fixed">
             <ul class="nav nav-pills pull-right">
-                <li role="presentation" class="active"><a href="/">Home</a>
+                <li role="presentation"><a href="/">Home</a>
                 </li>
                 <li role="presentation"><a href="/login">Sign In</a>
+                </li>
+                <li role="presentation" class="active"><a href="#">Edit</a>
                 </li>
             </ul>
         </nav>
@@ -27,7 +29,7 @@
         {% from "form_inputs.html" import render_field %}
         <form method="POST" action="">
             <div class="form-group">
-                {{ render_field(form.college_id, class_="form-control") }}
+                <h2>{{ form.college_id.data }}</h2>
                 {{ render_field(form.rank, class_="form-control") }}
                 {{ render_field(form.review, class_="form-control") }}
             </div>

@@ -16,4 +16,4 @@ class AddFavorites(FlaskForm):
     college_id = IntegerField('College Id', validators=[DataRequired()])
     rank = IntegerField('Rank', validators=[DataRequired()])
     review = TextAreaField('Review', validators=[DataRequired(), Length(max=250)])
-    submit = SubmitField('Add')
+    submit = SubmitField('Submit')

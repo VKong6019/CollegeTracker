@@ -1,6 +1,6 @@
 use uscolleges;
 DROP PROCEDURE IF EXISTS get_favorite;
-DROP FUNCTION IF EXISTS get_college_name;
+DROP PROCEDURE IF EXISTS get_college_name;
 DROP FUNCTION IF EXISTS get_college_id;
 DROP PROCEDURE IF EXISTS track_superlative;
 DROP PROCEDURE IF EXISTS track_college_profile;
@@ -41,20 +41,13 @@ DELIMITER ;
 
 # given a college id, return respective college name if it exists
 DELIMITER //
-CREATE FUNCTION get_college_name(
-	college_id	INT
+CREATE PROCEDURE get_college_name(
+	IN college_id	INT
 )
-RETURNS VARCHAR(250)
-READS SQL DATA
 BEGIN
-	DECLARE uni_name VARCHAR(250);
-
     SELECT cname
-    INTO uni_name
     FROM college_name
     WHERE cid = college_id;
-
-    RETURN IFNULL(uni_name, "Invalid College");
 END //
 DELIMITER ;
 
