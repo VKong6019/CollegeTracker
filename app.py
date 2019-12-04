@@ -7,7 +7,6 @@ from flask_bootstrap import Bootstrap
 from CollegeConnector import get_colleges, get_favs, create_fav, delete_fav, get_fav, update_rank, update_review, \
     get_college_name
 from user_input import AddFavorites, SignUpForm
-import pymysql
 import secretsecret
 
 # pip install mysql-connector

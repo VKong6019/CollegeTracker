@@ -1,6 +1,6 @@
 use uscolleges;
 DROP PROCEDURE IF EXISTS get_favorite;
-DROP PROCEDURE IF EXISTS get_college_name;
+DROP PROCEDURE IF EXISTS track_name;
 DROP FUNCTION IF EXISTS get_college_id;
 DROP PROCEDURE IF EXISTS track_superlative;
 DROP PROCEDURE IF EXISTS track_college_profile;
@@ -41,7 +41,7 @@ DELIMITER ;
 
 # given a college id, return respective college name if it exists
 DELIMITER //
-CREATE PROCEDURE get_college_name(
+CREATE PROCEDURE track_name(
 	IN college_id	INT
 )
 BEGIN
@@ -116,7 +116,7 @@ READS SQL DATA
 BEGIN
 	DECLARE msg MEDIUMTEXT;
     
-    SELECT CONCAT(srank, ' ', superlative)
+    SELECT CONCAT(srank, ' - ', superlative)
     INTO msg
     FROM ranking
     WHERE rid = college_id;
@@ -135,7 +135,7 @@ READS SQL DATA
 BEGIN
 	DECLARE msg MEDIUMTEXT;
     
-    SELECT CONCAT('tuition: ', tuition, ' room: ', room)
+    SELECT CONCAT('tuition: ', tuition, '\nroom: ', room)
     INTO msg
     FROM price
     WHERE pid = college_id;
@@ -154,7 +154,7 @@ READS SQL DATA
 BEGIN
 	DECLARE msg MEDIUMTEXT;
     
-    SELECT CONCAT(set_type, ' area: ', set_desc)
+    SELECT CONCAT(set_type, ' area - ', set_desc)
     INTO msg
     FROM setting
     WHERE sid = college_id;
@@ -192,7 +192,7 @@ READS SQL DATA
 BEGIN
 	DECLARE loc_msg MEDIUMTEXT;
     
-    SELECT CONCAT('Address: ', get_address(aid), ' Phone: ', phone, ' Setting: ', get_desc(sid))
+    SELECT CONCAT('Address: ', get_address(aid), '<br/>Phone: ', phone, '<br/>Setting: ', get_desc(sid))
     INTO loc_msg
     FROM location
     WHERE lid = college_id;
@@ -224,9 +224,9 @@ DELMIITER ;
 DELIMITER //
 CREATE PROCEDURE track_colleges()
 BEGIN
-	SELECT cid, get_college_name(cid), pres_name, get_rank(rank_id), get_tuition(price),
+	SELECT college.cid, cname, pres_name, get_rank(rank_id), get_tuition(price),
     get_location(loc), get_type(ctype), endowment
-    FROM college;
+    FROM college INNER JOIN college_name ON college.cid = college_name.cid;
 END //
 DELIMITER ;
 
