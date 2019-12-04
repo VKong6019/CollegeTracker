@@ -192,7 +192,7 @@ READS SQL DATA
 BEGIN
 	DECLARE loc_msg MEDIUMTEXT;
     
-    SELECT CONCAT('Address: ', get_address(aid), '<br/>Phone: ', phone, '<br/>Setting: ', get_desc(sid))
+    SELECT CONCAT('Address: ', get_address(aid), '\nPhone: ', phone, '\nSetting: ', get_desc(sid))
     INTO loc_msg
     FROM location
     WHERE lid = college_id;
