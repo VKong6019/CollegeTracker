@@ -158,7 +158,7 @@ def update_rank(cid, new_rank):
     db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
                                  password=secretsecret.spooky_password)
     coll_cursor = db.cursor()
-    coll_cursor.callproc("update_rank_fav", [next(iter(db_dict)), cid, new_rank])
+    coll_cursor.callproc("update_rank_fav", [secretsecret.spooky_username, cid, new_rank])
     db.commit()
     coll_cursor.close()
     db.close()
@@ -171,7 +171,9 @@ def update_review(cid, new_text):
     db = mysql.connector.connect(host="localhost", database="uscolleges", user=secretsecret.spooky_username,
                                  password=secretsecret.spooky_password)
     coll_cursor = db.cursor()
-    coll_cursor.callproc("update_review_fav", [next(iter(db_dict)), cid, new_text])
+    coll_cursor.callproc("update_review_fav", [secretsecret.spooky_username, cid, new_text])
     db.commit()
     coll_cursor.close()
     db.close()
+
+

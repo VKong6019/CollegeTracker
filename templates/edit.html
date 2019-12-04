@@ -25,15 +25,19 @@
     <hr>
     <div class="jumbotron">
         <h1>Edit Favorite</h1>
+        {% block content %}
         {% from "form_inputs.html" import render_field %}
         <form method="POST" action="">
             <div class="form-group">
+                {{ form.csrf_token }}
                 <h2>{{ form.college_id.data }}</h2>
                 {{ render_field(form.rank, class_="form-control") }}
                 {{ render_field(form.review, class_="form-control") }}
             </div>
             {{ form.submit }}
         </form>
+        {% endblock %}
     </div>
+
 </div>
 </body>

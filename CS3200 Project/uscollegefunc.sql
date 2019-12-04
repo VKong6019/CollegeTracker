@@ -298,7 +298,7 @@ CREATE PROCEDURE update_rank_fav(
     IN new_rank INT
 )
 BEGIN
-	UPDATE favorties
+	UPDATE favorites
     SET pref_rank = new_rank
     WHERE username = uname AND cid = college_id;
 END //
