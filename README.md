@@ -34,7 +34,7 @@ Once a user decides to edit a favorite, they are taken to the edit page where th
 * [Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/install.html) - Extension that integrates WTForms and Flask (Python)
 * [Bootstrap](https://getbootstrap.com/) - front-end component library (HTML/CSS/JS) 
 
-#### Commands:
+#### Installing Dependencies:
 
 `pip install Flask`
 
@@ -43,6 +43,14 @@ Once a user decides to edit a favorite, they are taken to the edit page where th
 `pip install mysql-connector`
 
 `pip install Flask-WTF`
+
+
+## Usage
+- Clone this repository: `git clone https://github.com/VKong6019/CollegeTracker.git`
+- Once all dependencies have been installed, run CollegeTracker locally on a Flask server: `flask run`
+- The server will run on http://127.0.0.1:5000/.
+
+Download our local MySQL 'uscolleges' database dump and run the queries in [CS3200 Project](https://github.com/VKong6019/CollegeTracker/tree/master/CS3200%20Project).
 
 ## Credits
 Vera Kong and Nicole Danuwidjaja
