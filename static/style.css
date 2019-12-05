@@ -1,3 +1,7 @@
+.edit-form {
+    max-width: 500px;
+}
+
 .flash {
     position: relative;
 }
@@ -21,12 +25,6 @@ tr:hover{
 .college_db td {
     padding: 10px;
 }
-
-.form-signin {
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-}
 .form-signin .form-signin-heading,
 .form-signin {
     margin-bottom: 10px;
@@ -34,7 +32,7 @@ tr:hover{
 .form-signin {
     font-weight: normal;
 }
-.form-signin .form-control {
+.form-signin .form-control .add-favorite {
     position: relative;
     height: auto;
     -webkit-box-sizing: border-box;
@@ -45,4 +43,22 @@ tr:hover{
 }
 .form-signin .form-control:focus {
     z-index: 2;
+}
+
+.edit-favorite {
+    max-width: 650px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.add-favorite {
+    max-width: 1000px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 }

@@ -27,16 +27,19 @@
         <h1>Edit Favorite</h1>
         {% block content %}
         {% from "form_inputs.html" import render_field %}
-        <form method="POST" action="">
-            <div class="form-group">
-                {{ form.csrf_token }}
-                <h2>{{ form.college_id.data }}</h2>
-                {{ render_field(form.rank, class_="form-control") }}
-                {{ render_field(form.review, class_="form-control") }}
-            </div>
-            {{ form.submit }}
-        </form>
+        <div class="edit-favorite">
+            <form class="edit-form" method="POST" action="">
+                <div class="form-group">
+                    {{ form.csrf_token }}
+                    <h2>{{ form.college_id.data }}</h2>
+                    {{ render_field(form.rank, class_="form-control") }}
+                    {{ render_field(form.review, class_="form-control") }}
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
+            </form>
+        </div>
         {% endblock %}
+        {% block body %}{% endblock %}
     </div>
 
 </div>

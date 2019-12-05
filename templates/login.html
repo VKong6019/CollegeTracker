@@ -21,16 +21,17 @@
         <h3 class="text-muted">CollegeFinder</h3>
     </div>
     <hr>
-
     <div class="container">
         {% extends "bootstrap/base.html" %}
         {% import "bootstrap/wtf.html" as wtf %}
 
         {% block content %}
 
-        <form class="form-signin" method="POST" action="/login">
+        <form class="form-signin" method="POST" action="">
             <h2 class="form-signin-heading">Sign In to CollegeTracker</h2>
+            {{ form.csrf_token }}
             {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
             {{ wtf.form_field(form.username) }}
             {{ wtf.form_field(form.password) }}
             <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
